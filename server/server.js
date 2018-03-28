@@ -8,6 +8,9 @@ wss.broadcast = function(data) {
 
 wss.on('connection', function(ws) {
     console.log('client connected');
+    var id =  Math.floor(Math.random() * Math.floor(100));
+    ws.send('{id:"'+id+'"}');
+
     ws.on('message', function(message) {
         wss.broadcast(message);
         console.log(message);
